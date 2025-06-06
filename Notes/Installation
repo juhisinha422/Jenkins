@@ -1,0 +1,55 @@
+  𝐃𝐚𝐲 1: 𝐈𝐧𝐬𝐭𝐚𝐥𝐥𝐚𝐭𝐢𝐨𝐧, 𝐒𝐞𝐭𝐮𝐩 & 𝐅𝐢𝐫𝐬𝐭 𝐀𝐜𝐜𝐞𝐬𝐬 𝐨𝐧 𝐑𝐇𝐄𝐋 9 ⚙️📡
+Today, I took my first step into the world of Jenkins — the most widely used open-source automation tool for CI/CD pipelines!
+
+
+📦 𝗦𝘁𝗲𝗽-𝗯𝘆-𝗦𝘁𝗲𝗽 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗮𝘁𝗶𝗼𝗻
+
+𝟭. 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗮𝗻𝗱 𝗮𝗱𝗱 𝘁𝗵𝗲 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 𝗳𝗶𝗹𝗲
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://lnkd.in/gW-nMmHm
+
+This command fetches the Jenkins YUM repository file and places it in the appropriate directory so that yum can find and install Jenkins packages.
+
+𝟮. 𝗜𝗺𝗽𝗼𝗿𝘁 𝘁𝗵𝗲 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗚𝗣𝗚 𝗸𝗲𝘆
+rpm --import https://lnkd.in/gpsCNhT9
+
+This imports the GPG key used to verify the Jenkins packages to ensure their authenticity and integrity.
+
+𝟯. 𝗨𝗽𝗱𝗮𝘁𝗲 𝘁𝗵𝗲 𝘀𝘆𝘀𝘁𝗲𝗺
+sudo yum upgrade
+
+This updates all installed packages to the latest versions available in your enabled repositories. It's good practice before installing new software.
+
+𝟰. 𝗜𝗻𝘀𝘁𝗮𝗹𝗹 𝗢𝗽𝗲𝗻𝗝𝗗𝗞 (𝗝𝗮𝘃𝗮 𝟮𝟭)
+yum install fontconfig java-21-openjdk
+
+Jenkins requires Java to run. This command installs the required Java runtime (Java 21 in this case) and fontconfig (required for Java GUI rendering, even if unused).
+
+𝟱. 𝗜𝗻𝘀𝘁𝗮𝗹𝗹 𝗝𝗲𝗻𝗸𝗶𝗻𝘀
+yum install jenkins
+
+Installs the Jenkins service using the Jenkins YUM repository.
+
+𝟲. 𝗦𝘁𝗮𝗿𝘁 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝘀𝗲𝗿𝘃𝗶𝗰𝗲
+systemctl start jenkins
+
+Starts the Jenkins service so it begins running in the background.
+
+𝟳. 𝗖𝗵𝗲𝗰𝗸 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝘀𝗲𝗿𝘃𝗶𝗰𝗲 𝘀𝘁𝗮𝘁𝘂𝘀
+systemctl status jenkins
+
+Verifies that the Jenkins service is running properly. You should see "active (running)".
+
+𝟴. 𝗩𝗲𝗿𝗶𝗳𝘆 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗮𝘁𝗶𝗼𝗻
+Open your web browser and visit:
+
+http://<your-server-ip>:8080
+http://3.108.42.24:8080
+
+This will open the Jenkins dashboard. The first time you access it, Jenkins will prompt you for an administrator password.
+
+𝟵. 𝗥𝗲𝘁𝗿𝗶𝗲𝘃𝗲 𝘁𝗵𝗲 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗶𝗻𝗶𝘁𝗶𝗮𝗹 𝗮𝗱𝗺𝗶𝗻 𝗽𝗮𝘀𝘀𝘄𝗼𝗿𝗱
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Copy the password shown in the output and paste it into the Jenkins setup page to unlock the Jenkins dashboard.
+
+✅ Jenkins is Now Installed
