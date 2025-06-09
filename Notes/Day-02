@@ -1,0 +1,28 @@
+𝐃𝐚𝐲 2: 𝐆𝐢𝐭𝐇𝐮𝐛 𝐈𝐧𝐭𝐞𝐠𝐫𝐚𝐭𝐢𝐨𝐧 & 𝐀𝐩𝐚𝐜𝐡𝐞 𝐖𝐞𝐛 𝐒𝐞𝐫𝐯𝐞𝐫 𝐨𝐧 𝐄𝐂2 ⚙️🌐
+Today, I successfully hosted a static website on an EC2 instance using Jenkins, GitHub, and Apache (httpd). This was done in two separate Jenkins jobs — each with its own purpose and logic.
+Here’s how I did it 👇
+
+🌐 𝗝𝗼𝗯 𝟭: 𝘀𝗲𝘁𝘂𝗽_𝘄𝗲𝗯𝘀𝗲𝗿𝘃𝗲𝗿 – 𝗪𝗲𝗯 𝗦𝗲𝗿𝘃𝗲𝗿 𝗦𝗲𝘁𝘂𝗽 𝗼𝗻 𝗘𝗖𝟮
+✅ Installed Apache HTTPD:
+
+sudo yum install httpd -y
+sudo systemctl start httpd
+
+✅ Exposed the site on port 8080
+✅ Accessed the live website in the browser via EC2's public IP
+
+🔧 𝗝𝗼𝗯 𝟮: 𝗴𝗶𝘁𝗵𝘂𝗯_𝗽𝗿𝗼𝗷𝗲𝗰𝘁 – 𝗚𝗶𝘁𝗛𝘂𝗯 𝘁𝗼 𝗘𝗖𝟮 𝗙𝗶𝗹𝗲 𝗖𝗼𝗽𝘆
+✅ Pulled code directly from my GitHub repo containing index.html
+✅ Copied the file to the EC2 instance's Apache directory
+
+sudo cp index.html /var/www/html/myweb.html
+
+💡 Result: File ready for web server use!
+🌈 Result: Website Live! ✔️
+
+🧠 Key Learnings from Day 2:
+✅ Job Chaining & Modularity: Breaking down the automation into two separate jobs helps with reusability and better error tracking.
+✅ Infrastructure as Code: Jenkinsfiles made the deployment process repeatable and version-controlled.
+✅ GitHub Integration: CI pipelines can directly respond to code changes on GitHub.
+✅ Apache on EC2: Learned to set up a basic web server and connect it to CI/CD flow.
+✅ Security Groups in AWS: Ensured port 8080 was open in the EC2 instance’s inbound rules.
