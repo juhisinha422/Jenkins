@@ -1,0 +1,48 @@
+🚀 𝐉𝐞𝐧𝐤𝐢𝐧𝐬 𝐋𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐉𝐨𝐮𝐫𝐧𝐞𝐲 – 𝐃𝐚𝐲 3: 𝐌𝐚𝐬𝐭𝐞𝐫-𝐒𝐥𝐚𝐯𝐞 𝐍𝐨𝐝𝐞 𝐒𝐞𝐭𝐮𝐩 & 𝐑𝐞𝐦𝐨𝐭𝐞 𝐉𝐨𝐛 𝐄𝐱𝐞𝐜𝐮𝐭𝐢𝐨𝐧 🧠🖥️
+Today, I explored one of the most powerful features of Jenkins — its ability to distribute jobs across multiple nodes. I successfully set up a Linux Slave Node, configured a remote workspace, and executed a Jenkins job on it. Here's what I did step by step:
+
+⚙️ 𝗦𝘁𝗲𝗽 𝟭 – 𝗨𝗻𝗱𝗲𝗿𝘀𝘁𝗮𝗻𝗱𝗶𝗻𝗴 𝗝𝗲𝗻𝗸𝗶𝗻𝘀 𝗔𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲
+🔹 Jenkins uses a Master-Slave model (now called Controller-Agent)
+🔹 Master (controller) handles the UI, scheduling, and job coordination
+🔹 Slave (agent) performs the actual job execution when assigned
+
+🖥️ 𝗦𝘁𝗲𝗽 𝟮 – 𝗔𝗱𝗱𝗶𝗻𝗴 𝗮 𝗟𝗶𝗻𝘂𝘅 𝗦𝗹𝗮𝘃𝗲 𝗡𝗼𝗱𝗲
+🔹 On my Jenkins master, I navigated to:
+ Manage Jenkins > Manage Nodes and Clouds > New Node
+🔹 Created a node named Linux_Slave_Node_1
+🔹 Set the node type as Permanent Agent
+🔹 Configured:
+ - Remote root directory: /home/ec2-user/Jenkins_Workspace
+ - Number of executors: 1
+ - Usage: Use this node as much as possible
+🔹 Set the launch method to "Launch agents via SSH" and provided:
+ - Host IP
+ - SSH credentials
+ - Port
+✅ Once saved, the slave node connected successfully!
+
+📁 𝗦𝘁𝗲𝗽 𝟯 – 𝗖𝗿𝗲𝗮𝘁𝗶𝗻𝗴 𝗪𝗼𝗿𝗸𝘀𝗽𝗮𝗰𝗲 𝗼𝗻 𝗦𝗹𝗮𝘃𝗲 𝗡𝗼𝗱𝗲
+🔹 Logged into the slave node and created a directory:
+ mkdir -p /home/ec2-user/Jenkins_Workspace
+
+🔹 Made sure Jenkins had permission to use it as the working directory for job execution.
+
+🧪 𝗦𝘁𝗲𝗽 𝟰 – 𝗘𝘅𝗲𝗰𝘂𝘁𝗶𝗻𝗴 𝗮 𝗝𝗼𝗯 𝗼𝗻 𝘁𝗵𝗲 𝗦𝗹𝗮𝘃𝗲 𝗡𝗼𝗱𝗲
+🔹 Back in Jenkins, I created a new freestyle project
+🔹 In the "Restrict where this project can be run" section, I specified the label of the slave node:- Linux_Slave_Node_1
+🔹 Added a simple shell command in the build step:
+ echo "Hello from Slave Node!" > hello_slave.txt
+
+✅ Triggered the job — it executed on the slave node and created the
+
+output file in /home/ec2-user/Jenkins_Workspace.
+
+🎯 Why This Matters
+✨ Workload Distribution: Spread builds across machines to improve performance
+ ✨ OS Flexibility: Run specific jobs on specific platforms (Linux/Windows/Mac)
+ ✨ Better Resource Management: Avoid overloading the Jenkins master
+🧠 What I Learned Today
+🔸 Jenkins can scale using agent nodes
+ 🔸 Setting up SSH-based remote nodes is simple and powerful
+ 🔸 Jobs can run independently across environments with their own workspace
+ 🔸 Understanding the executor system helps manage CI/CD pipelines effectively
