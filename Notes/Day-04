@@ -1,0 +1,40 @@
+𝐉𝐞𝐧𝐤𝐢𝐧𝐬 𝐋𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐉𝐨𝐮𝐫𝐧𝐞𝐲 – 𝐃𝐚𝐲 4: 𝐌𝐚𝐯𝐞𝐧 𝐈𝐧𝐭𝐞𝐠𝐫𝐚𝐭𝐢𝐨𝐧 & 𝐁𝐮𝐢𝐥𝐝 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧 𝐨𝐧 𝐒𝐥𝐚𝐯𝐞 𝐍𝐨𝐝𝐞 ☕📦
+Today was all about integrating Maven with Jenkins to automate Java project builds. I practiced running different Maven goals like compile, test, and package, using a Jenkins job on a configured slave node. Here's how I did it, step by step 👇
+
+🛠️ 𝗦𝘁𝗲𝗽 𝟭 – 𝗣𝗿𝗲𝗽𝗮𝗿𝗲𝗱 𝗠𝘆 𝗦𝗹𝗮𝘃𝗲 𝗡𝗼𝗱𝗲
+To run Maven jobs smoothly, I made sure my slave node had:
+ 🔹 Java installed
+ 🔹 Git installed
+ 🔹 Maven installed and configured (mvn command working)
+ 🔹 A dedicated workspace folder:
+   mkdir -p /home/ec2-user/Jenkins_Workspace
+
+⚙️ 𝗦𝘁𝗲𝗽 𝟮 – 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗲𝗱 𝗠𝗮𝘃𝗲𝗻 𝗶𝗻 𝗝𝗲𝗻𝗸𝗶𝗻𝘀
+🔸 Went to Manage Jenkins > Global Tool Configuration
+🔸 Under Maven, added a name (e.g., Maven-3.8) and selected "Install automatically" or added the path
+🔸 Verified Java and Git were properly configured too
+
+🧪 𝗦𝘁𝗲𝗽 𝟯 – 𝗖𝗿𝗲𝗮𝘁𝗲𝗱 𝗮 𝗠𝗮𝘃𝗲𝗻 𝗝𝗼𝗯 𝗶𝗻 𝗝𝗲𝗻𝗸𝗶𝗻𝘀
+🔹 Created a freestyle project in Jenkins
+🔹 Checked “Restrict where this project can be run” and selected my slave node
+🔹 Under Source Code Management, selected Git and pasted my repo URL
+🔹 Under Build, selected Invoke top-level Maven targets
+🔹 Used these goals during testing:
+        - clean
+        - compile
+        - test
+        - package
+✅ Ran the job and watched Jenkins compile, test, and package my Java app from source code using Maven!
+
+🧼 𝗦𝘁𝗲𝗽 𝟰 – 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝗱 𝗠𝗮𝘃𝗲𝗻 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀
+Also ran and tested these Maven goals:
+🔸 mvn clean – Clears previous builds
+🔸 mvn clean package – Cleans and then packages the code into a JAR/WAR
+These commands helped me understand how Jenkins automates build lifecycles through Maven.
+
+📚 𝗞𝗲𝘆 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴: 
+🔹 How to integrate Maven with Jenkins
+🔹 Running Maven builds on a remote slave node
+🔹 Importance of tools like Java, Git, and Maven in CI/CD pipelines
+🔹 How clean, compile, test, and package stages work together
+🔹 Configuring Jenkins to work across environments with shared workspace
